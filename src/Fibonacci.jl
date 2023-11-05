@@ -8,7 +8,7 @@ struct FibonacciIterator
     end
 end
 
-eachfibbo(n) = FibonacciIterator(n)
+eachfibonacci(n) = FibonacciIterator(n)
 
 Base.iterate(::FibonacciIterator) = (1, ((0, 1), 2))
 function Base.iterate(iter::FibonacciIterator, ((fₙ₋₂, fₙ₋₁), n))
