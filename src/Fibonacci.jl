@@ -24,4 +24,20 @@ Base.eltype(::Type{FibonacciIterator}) = BigInt
 
 Base.length(iter::FibonacciIterator) = iter.maxiter
 
+function Base.getindex(iter::FibonacciIterator, n::Integer)
+    if n > iter.maxiter
+        throw(BoundsError(iter, n))
+    else
+        for (i, value) in enumerate(eachfibonacci(n))
+            if i == n
+                return value
+            end
+        end
+    end
+end
+
+Base.firstindex(::FibonacciIterator) = 1
+
+Base.lastindex(sequence::FibonacciIterator) = sequence.maxiter
+
 end
