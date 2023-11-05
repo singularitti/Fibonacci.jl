@@ -41,7 +41,8 @@ struct FibonacciSequence
     end
 end
 
-Base.iterate(::FibonacciSequence) = (1, ((0, 1), 2))
+# You have to write `iterate` separately to set `f₀`
+Base.iterate(::FibonacciSequence) = (1, ((0, 1), 2))  # (f₁, (f₀, f₁), 2)
 # See https://github.com/JuliaLang/julia/blob/v1.10.0-rc1/base/regex.jl#L686-L714
 function Base.iterate(iter::FibonacciSequence, ((fₙ₋₂, fₙ₋₁), n))
     if n > iter.maxiter
