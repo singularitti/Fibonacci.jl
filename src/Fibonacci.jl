@@ -2,6 +2,37 @@ module Fibonacci
 
 export FibonacciSequence
 
+"""
+    FibonacciSequence(maxiter::Integer)
+
+Create a sequence object that generates Fibonacci numbers.
+
+# Examples
+```julia-repl
+julia> for i in FibonacciSequence(10)
+           println(i)
+       end
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+
+julia> FibonacciSequence(10)[begin]
+1
+
+julia> FibonacciSequence(10)[end]
+55
+
+julia> FibonacciSequence(10)[6]
+8
+```
+"""
 struct FibonacciSequence
     maxiter::UInt64
     function FibonacciSequence(maxiter)
