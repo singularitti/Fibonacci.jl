@@ -1,5 +1,17 @@
 module Fibonacci
 
-# Write your package code here.
+struct FibonacciIterator
+    maxiter::UInt64
+end
+
+Base.iterate(::FibonacciIterator) = ((0, 1), 2)
+function Base.iterate(iter::FibonacciIterator, ((fₙ₋₂, fₙ₋₁), n))
+    if n > iter.maxiter
+        return nothing
+    else
+        fₙ = fₙ₋₁ + fₙ₋₂
+        return (fₙ₋₁, fₙ), n + 1
+    end
+end
 
 end
