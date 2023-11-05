@@ -1,17 +1,17 @@
 module Fibonacci
 
-struct FibonacciIterator
+export FibonacciSequence
+
+struct FibonacciSequence
     maxiter::UInt64
-    function FibonacciIterator(maxiter)
+    function FibonacciSequence(maxiter)
         @assert maxiter >= 1
         return new(maxiter)
     end
 end
 
-eachfibonacci(n) = FibonacciIterator(n)
-
-Base.iterate(::FibonacciIterator) = (1, ((0, 1), 2))
-function Base.iterate(iter::FibonacciIterator, ((fₙ₋₂, fₙ₋₁), n))
+Base.iterate(::FibonacciSequence) = (1, ((0, 1), 2))
+function Base.iterate(iter::FibonacciSequence, ((fₙ₋₂, fₙ₋₁), n))
     if n > iter.maxiter
         return nothing
     else
@@ -20,15 +20,15 @@ function Base.iterate(iter::FibonacciIterator, ((fₙ₋₂, fₙ₋₁), n))
     end
 end
 
-Base.eltype(::Type{FibonacciIterator}) = BigInt
+Base.eltype(::Type{FibonacciSequence}) = BigInt
 
-Base.length(iter::FibonacciIterator) = iter.maxiter
+Base.length(iter::FibonacciSequence) = iter.maxiter
 
-function Base.getindex(iter::FibonacciIterator, n::Integer)
+function Base.getindex(iter::FibonacciSequence, n::Integer)
     if n > iter.maxiter
         throw(BoundsError(iter, n))
     else
-        for (i, value) in enumerate(eachfibonacci(n))
+        for (i, value) in enumerate(FibonacciSequence(n))
             if i == n
                 return value
             end
@@ -36,8 +36,8 @@ function Base.getindex(iter::FibonacciIterator, n::Integer)
     end
 end
 
-Base.firstindex(::FibonacciIterator) = 1
+Base.firstindex(::FibonacciSequence) = 1
 
-Base.lastindex(sequence::FibonacciIterator) = sequence.maxiter
+Base.lastindex(sequence::FibonacciSequence) = sequence.maxiter
 
 end
