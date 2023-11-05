@@ -2,6 +2,10 @@ module Fibonacci
 
 struct FibonacciIterator
     maxiter::UInt64
+    function FibonacciIterator(maxiter)
+        @assert maxiter > 1
+        return new(maxiter)
+    end
 end
 
 Base.iterate(::FibonacciIterator) = ((0, 1), 2)
