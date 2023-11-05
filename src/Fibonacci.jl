@@ -20,7 +20,7 @@ function Base.iterate(iter::FibonacciIterator, ((fₙ₋₂, fₙ₋₁), n))
     end
 end
 
-Base.eltype(::Type{FibonacciIterator}) = Base.UInt128
+Base.eltype(::Type{FibonacciIterator}) = BigInt
 
 Base.length(iter::FibonacciIterator) = iter.maxiter
 
