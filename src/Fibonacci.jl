@@ -14,4 +14,8 @@ function Base.iterate(iter::FibonacciIterator, ((fₙ₋₂, fₙ₋₁), n))
     end
 end
 
+Base.eltype(::Type{FibonacciIterator}) = Tuple{UInt64,UInt64}
+
+Base.length(iter::FibonacciIterator) = iter.maxiter
+
 end
