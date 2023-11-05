@@ -31,7 +31,23 @@ This repository is created and maintained by
 
 ## Package features
 
+`FibonacciSequence.jl` is an experimental Julia package designed to demonstrate the use of
+Julia's iteration and indexing interfaces by implementing the Fibonacci sequence. It
+provides an iterable and indexable `FibonacciSequence` object that computes Fibonacci
+numbers up to a specified maximum iteration.
 
+### Features
+
+- Iteration: Traverse through the Fibonacci sequence using standard Julia iteration protocols.
+- Indexing: Directly access the `n`th Fibonacci number using indexing.
+- Bounds Checking: Automatically handles bounds and provides informative errors on out-of-range access.
+
+### Limitations
+
+The `FibonacciSequence` is primarily a demonstration and has the following limitations:
+
+- Performance: The sequence is not optimized for performance and may not be suitable for large-scale computations.
+- Memory: The iterative process stores the two most recent Fibonacci numbers, which can lead to high memory usage for large indices.
 
 ## Installation
 
