@@ -34,7 +34,7 @@ julia> FibonacciSequence(10)[6]
 ```
 """
 struct FibonacciSequence
-    maxiter::UInt64
+    maxiter::BigInt
     function FibonacciSequence(maxiter)
         @assert maxiter >= 1
         return new(maxiter)
