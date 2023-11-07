@@ -58,7 +58,7 @@ Base.eltype(::Type{FibonacciSequence}) = BigInt
 Base.length(iter::FibonacciSequence) = iter.maxiter
 
 function Base.getindex(iter::FibonacciSequence, n::Integer)
-    if n > iter.maxiter
+    if n > iter.maxiter || n < 1
         throw(BoundsError(iter, n))
     else
         for (i, value) in enumerate(FibonacciSequence(n))
