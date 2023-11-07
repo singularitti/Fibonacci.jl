@@ -3,7 +3,7 @@ module Fibonacci
 export FibonacciSequence
 
 """
-    FibonacciSequence(maxiter::Integer)
+    FibonacciSequence(stopat::Integer)
 
 Create a sequence object that generates Fibonacci numbers.
 
@@ -34,10 +34,10 @@ julia> FibonacciSequence(10)[6]
 ```
 """
 struct FibonacciSequence
-    maxiter::BigInt
-    function FibonacciSequence(maxiter)
-        @assert maxiter >= 1
-        return new(maxiter)
+    stopat::BigInt
+    function FibonacciSequence(stopat)
+        @assert stopat >= 1
+        return new(stopat)
     end
 end
 
@@ -45,7 +45,7 @@ end
 Base.iterate(::FibonacciSequence) = (1, ((0, 1), 2))  # (f₁, (f₀, f₁), 2)
 # See https://github.com/JuliaLang/julia/blob/v1.10.0-rc1/base/regex.jl#L686-L714
 function Base.iterate(iter::FibonacciSequence, ((fₙ₋₂, fₙ₋₁), n))
-    if n > iter.maxiter
+    if n > iter.stopat
         return nothing
     else
         fₙ = fₙ₋₁ + fₙ₋₂
@@ -55,10 +55,10 @@ end
 
 Base.eltype(::Type{FibonacciSequence}) = BigInt
 
-Base.length(iter::FibonacciSequence) = iter.maxiter
+Base.length(iter::FibonacciSequence) = iter.stopat
 
 function Base.getindex(iter::FibonacciSequence, n::Integer)
-    if n > iter.maxiter || n < 1
+    if n > iter.stopat || n < 1
         throw(BoundsError(iter, n))
     else
         for (i, value) in enumerate(FibonacciSequence(n))
@@ -71,6 +71,6 @@ end
 
 Base.firstindex(::FibonacciSequence) = 1
 
-Base.lastindex(sequence::FibonacciSequence) = sequence.maxiter
+Base.lastindex(sequence::FibonacciSequence) = sequence.stopat
 
 end
